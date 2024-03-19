@@ -77,3 +77,23 @@ const loginWithCredentials = async (req, res) => {
             .json({ message: "Error adding data", error: error.message });
     }
 };
+const currentUser = async (req, res) => {
+    try {
+        let refreshToken = req.cookies.refreshToken;
+        if (!refreshToken) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                res.status(200).json({ message: "User logged in successfully", user });
+            } else {
+                res.status(401).json({ message: "Unauthorized" });
+            }
+        });
+    } catch (error) {
+        res
+            .status(500)
+            .json({ message: "Error adding data", error: error.message });
+    }
+};
