@@ -97,3 +97,30 @@ const currentUser = async (req, res) => {
             .json({ message: "Error adding data", error: error.message });
     }
 };
+
+const logout = async (req, res) => {
+    try {
+        let refreshToken = req.cookies.refreshToken;
+        if (!refreshToken) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        auth
+            .signOut()
+            .then(() => {
+                res.clearCookie("refreshToken");
+                res.status(200).json({ message: "User logged out successfully" });
+            })
+            .catch((error) => {
+                res
+                    .status(500)
+                    .json({ message: "Error adding data", error: error.message });
+            });
+    } catch (error) {
+        res
+            .status(500)
+            .json({ message: "Error adding data", error: error.message });
+    }
+};
+
+module.exports = { addUser, loginWithCredentials, currentUser, logout};
