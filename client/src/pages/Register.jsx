@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { auth } from "../libs/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -36,6 +38,13 @@ const Register = () => {
         loading: false,
         success: true,
       });
+      Swal.fire({
+        title: "Register Account Success",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      navigate("/login");
     } else {
       setValues({
         ...values,

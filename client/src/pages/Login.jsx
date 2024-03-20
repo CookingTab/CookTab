@@ -23,9 +23,7 @@ const Login = () => {
       setMessage("");
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          console.log(user, 'USER');
           dispatch({
             type: "LOGIN_SUCCESS",
             payload: user.uid,
@@ -37,7 +35,6 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
           setMessage("Email or password is incorrect");
           setIsLoading(false);
         });
@@ -53,10 +50,7 @@ const Login = () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      console.log(user, "USER");
-      console.log(user, "checkpoint2");
       if (user) {
-        console.log("checkpoint");
         dispatch(setUser({
           displayName : user.displayName,
           email : user.email,
