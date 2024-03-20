@@ -1,16 +1,18 @@
 const express = require("express");
 const bookmarkRouter = require("./bookmark");
-const userRouter = require("./user")
+
+const userRouter = require("./user");
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
     res.status(200).json({
         success: true,
-        message: "MANTAP GES",
+        message: "MANTAP",
     });
 });
 
 router.use("/bookmark", bookmarkRouter);
-router.use("/users", userRouter)
+router.use("/users", userRouter);
 
 module.exports = router;

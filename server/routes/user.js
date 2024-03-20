@@ -3,7 +3,7 @@ const {
     addUser,
     loginWithCredentials,
     currentUser,
-    logout
+    logout,
 } = require("../controllers/UserController");
 
 const userRouter = express.Router();

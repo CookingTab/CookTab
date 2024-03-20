@@ -1,5 +1,11 @@
 const express = require("express");
-const { getAllBookmark, updateBookmark, deleteBookmark, addBookmark, getBookmarkById, getByUserIdAndRecipeId,
+const {
+    getAllBookmark,
+    updateBookmark,
+    deleteBookmark,
+    addBookmark,
+    getBookmarkById,
+    getByUserIdAndRecipeId,
 } = require("../controllers/BookmarkControllers");
 const bookmarkRouter = express.Router();
 
